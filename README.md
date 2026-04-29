@@ -37,14 +37,14 @@ The goal is to make method-to-method comparisons easier to audit and reproduce.
 |  |- SequenceMatch.ipynb
 |  |- SequenceMatch_mu_1.ipynb
 |  `- Results.ipynb
-`- SVHN/
+|- SVHN/
 	 |- Full_Sup.ipynb
 	 |- MixMatch.ipynb
 	 |- FixMatch.ipynb
 	 |- FixMatch_mu_1.ipynb
 	 |- SequenceMatch.ipynb
 	 |- SequenceMatch_mu_1.ipynb
-	 `- Results.ipynb
+	 |- Results.ipynb
 ```
 
 ## Experimental Setup (At a Glance)
@@ -116,17 +116,6 @@ If you want to include publication metadata, update this section with:
 - paper title
 - authors
 - arXiv/OpenReview/DOI link
-
-## Citation
-
-```bibtex
-@misc{rethinking_ssl_evaluation_2026,
-	title  = {Rethinking SSL Evaluation},
-	author = {Anonymous},
-	year   = {2026},
-	note   = {Workshop companion repository}
-}
-```
 
 ## License
 
