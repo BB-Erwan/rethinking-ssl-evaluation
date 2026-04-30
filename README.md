@@ -38,13 +38,22 @@ The goal is to make method-to-method comparisons easier to audit and reproduce.
 |  |- SequenceMatch_mu_1.ipynb
 |  |- Results.ipynb
 |- SVHN/
-	 |- Full_Sup.ipynb
-	 |- MixMatch.ipynb
-	 |- FixMatch.ipynb
-	 |- FixMatch_mu_1.ipynb
-	 |- SequenceMatch.ipynb
-	 |- SequenceMatch_mu_1.ipynb
-	 |- Results.ipynb
+|  |- Full_Sup.ipynb
+|  |- Sup_labeled_only.ipynb
+|  |- MixMatch.ipynb
+|  |- FixMatch.ipynb
+|  |- FixMatch_mu_1.ipynb
+|  |- SequenceMatch.ipynb
+|  |- SequenceMatch_mu_1.ipynb
+|  |- Results.ipynb
+|- STL-10/
+   |- Sup_labeled_only.ipynb
+   |- MixMatch.ipynb
+   |- FixMatch.ipynb
+   |- FixMatch_mu_1.ipynb
+   |- SequenceMatch.ipynb
+   |- SequenceMatch_mu_1.ipynb
+   |- Results.ipynb
 ```
 
 ## Experimental Setup (At a Glance)
@@ -52,9 +61,9 @@ The goal is to make method-to-method comparisons easier to audit and reproduce.
 - Backbone: WideResNet-28-2
 - Datasets: CIFAR-10, SVHN
 - Metrics: weighted F1, accuracy
-- Typical label regimes observed in notebooks:
-	- CIFAR-10: 40 labeled examples
-	- SVHN: 250 labeled examples
+- Typical label regimes used in our experiments:
+	- CIFAR-10: 40, 250, 4000 labeled examples
+	- SVHN: 40, 250, 1000 labeled examples
 - Unlabeled ratio $\mu$:
 	- Standard runs: $\mu=7$
 	- Ablation runs: $\mu=1$
@@ -93,9 +102,34 @@ Suggested order per dataset:
 7. `SequenceMatch_mu_1.ipynb`
 8. `Results.ipynb`
 
+## Dataset Normalization Statistics
+
+Each notebook uses pre-computed per-channel mean and std for normalization. For CIFAR-10 the hardcoded values are:
+
+```python
+mean = torch.tensor([0.4914, 0.4822, 0.4465])
+std  = torch.tensor([0.2023, 0.1994, 0.2010])
+```
+
+If you want to recompute these from the training split yourself, uncomment the three lines at the top of `CIFAR-10/FixMatch_mu_1.ipynb` (and analogous notebooks):
+
+```python
+from utils import compute_mean_std
+loader = DataLoader(train_ds, batch_size=128, shuffle=False, num_workers=2)
+mean, std = compute_mean_std(loader)
+```
+
+`compute_mean_std` is implemented in `utils.py`. Replace the hardcoded tensors with the returned values before running any subsequent cells.
+
 ## Outputs and Logging
 
-Each training notebook stores JSON traces (for example under `results/...`) containing budget, test F1, and test accuracy, which are later aggregated by `Results.ipynb`.
+Pre-computed results are already available inside each dataset's `results/` folder:
+
+- `CIFAR-10/results/` — runs for 40, 250, and 4000 labeled examples (3 runs each) plus full supervision
+- `SVHN/results/` — runs for 40, 250, and 1000 labeled examples (3 runs each) plus full supervision
+- `STL-10/results/` — runs for 40 and 1000 labeled examples (3 runs each)
+
+Each JSON file contains per-iteration budget, test F1, and test accuracy traces. `Results.ipynb` in each dataset folder aggregates and plots these.
 
 If you rerun experiments, keep run naming consistent so aggregation notebooks can discover all runs.
 
@@ -105,17 +139,6 @@ If you rerun experiments, keep run naming consistent so aggregation notebooks ca
 - Keep augmentation definitions unchanged when comparing methods.
 - Compare methods at matched budget points, not only final epoch.
 - Torch CUDA wheels in `requirements.txt` are hardware-dependent; adjust if your local CUDA/runtime differs.
-
-## Workshop Context
-
-This repository is intended as the reproducibility package for a workshop paper.
-
-If you want to include publication metadata, update this section with:
-
-- workshop/conference name
-- paper title
-- authors
-- arXiv/OpenReview/DOI link
 
 ## License
 
