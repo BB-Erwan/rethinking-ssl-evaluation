@@ -6,9 +6,9 @@ This project compares classical SSL training schemes on CIFAR-10 and SVHN with a
 
 - Full Supervised (reference upper bound)
 - Supervised with labeled-only subset
-- MixMatch
-- FixMatch
-- SequenceMatch
+- MixMatch : https://arxiv.org/abs/1905.02249
+- FixMatch : https://arxiv.org/abs/2001.07685
+- SequenceMatch : https://arxiv.org/abs/2310.15787
 - Variants with $\mu=1$ for tighter unlabeled-to-labeled ratios
 
 ## Why This Repo
