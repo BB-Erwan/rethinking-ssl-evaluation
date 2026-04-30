@@ -36,7 +36,7 @@ The goal is to make method-to-method comparisons easier to audit and reproduce.
 |  |- FixMatch_mu_1.ipynb
 |  |- SequenceMatch.ipynb
 |  |- SequenceMatch_mu_1.ipynb
-|  `- Results.ipynb
+|  |- Results.ipynb
 |- SVHN/
 	 |- Full_Sup.ipynb
 	 |- MixMatch.ipynb
