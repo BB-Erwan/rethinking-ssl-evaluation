@@ -21,6 +21,24 @@ Many SSL comparisons focus only on final accuracy. This repository emphasizes th
 
 The goal is to make method-to-method comparisons easier to audit and reproduce.
 
+## Roadmap
+
+The medium-term roadmap is documented in `ROADMAP.md`.
+
+Planned extensions are grouped into four main tracks:
+
+- Evaluate more SSL methods under the same budget-aware protocol
+- Evaluate more datasets with aligned low/medium/high label regimes
+- Evaluate additional backbones beyond WideResNet-28-2
+- Further refine fairness criteria (compute/time control, variance analysis, confidence intervals)
+
+Suggested priority order:
+
+1. Add methods first (fastest impact)
+2. Extend to more datasets
+3. Extend to more architectures
+4. Formalize stricter fairness protocol as a long-term standard
+
 ## Repository Layout
 
 ```text
